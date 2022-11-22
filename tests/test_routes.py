@@ -22,7 +22,6 @@ BASE_URL = "/accounts"
 HTTPS_ENVIRON = {'wsgi.url_scheme': 'https'}
 
 
-
 ######################################################################
 #  T E S T   C A S E S
 ######################################################################
@@ -137,12 +136,11 @@ class TestAccountService(TestCase):
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         data = resp.get_json()
         self.assertEqual(data["name"], account.name)
-    
+
     def test_get_account_not_found(self):
         """It should not Read an Account that is not found"""
         resp = self.client.get(f"{BASE_URL}/0")
         self.assertEqual(resp.status_code, status.HTTP_404_NOT_FOUND)
-
 
     def test_update_account(self):
         """It should Update an existing Account"""
@@ -157,7 +155,6 @@ class TestAccountService(TestCase):
         self.assertEqual(resp.status_code, status.HTTP_200_OK)
         updated_account = resp.get_json()
         self.assertEqual(updated_account["name"], "Something Known")
-
 
     def test_delete_account(self):
         """It should Delete an Account"""
@@ -175,7 +172,7 @@ class TestAccountService(TestCase):
 #####
 # testing the method not allowed
 ######
-    
+
     def test_method_not_allowed(self):
         """It should not allow an illegal method call"""
         resp = self.client.delete(BASE_URL)

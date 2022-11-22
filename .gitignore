@@ -110,3 +110,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# local linting
+/.vscode
